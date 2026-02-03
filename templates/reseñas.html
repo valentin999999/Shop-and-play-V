@@ -1,0 +1,64 @@
+        <h3 id="tituloreseña" class="titulo">RESEÑAS DE ESTE JUEGO</h3>
+        <hr class="barra" id="barrareseña">
+        {% set nombre = namespace(found=true) %}
+        {% for reseña in param["reseñas"] %}
+            {% if reseña[0]==session.get("nombre") %}
+                {% set nombre.found = false %}
+            {% endif %}
+                <div class="reseña" 
+                {% if reseña[0]==session.get("nombre") %}
+                    id="mireseña"
+                {% endif %}
+                >
+                <h4 class="titulonombre">{{reseña[0]}}</h4>
+                <p class="textoreseña">{{reseña[1]}}</p>
+                    {% if reseña[0]==session.get("nombre") %}
+                        {% set r = reseña%}
+                        <form id="eliminarbox" method="POST" action="">
+                            <input type="hidden" id="reseñaId" name="reseñaId" value={{reseña[2]}}>
+                            <input type="hidden" id="juegoTitulo" name="juegoTitulo" value={{param["juegoElegido"][1]}}>
+                            <button 
+                                type="button" 
+                                id="eliminarreseña" 
+                                onclick="{{"queryAjaxForm('/juego/"+param["juegoElegido"][1]|replace("'","\\\'")+"/eliminarReseña','reseñabox','eliminarbox')"}}"
+                                title="Eliminar reseña"
+                            >
+                            &#10761
+                            </button>
+                        </form>
+                    {% endif %}
+            </div>
+        {% endfor %}
+        {% if session.get("nombre")!=None and nombre.found %}
+                <div class="reseña" id="tureseña">
+                    <h4 class="titulonombre" id="tunombre">{{session.get("nombre")}}</h4>
+                    <form action="" id="tuform" method="POST">
+                        <div id="calificacion">
+                            <input 
+                                type="range" 
+                                name="tunumero"
+                                id="tunumero" 
+                                placeholder="Califica este juego" 
+                                min="1" 
+                                max="5" 
+                                step="0.5" 
+                                oninput="calificar()" 
+                                value="0"
+                            >
+                            <p id="textopuntuacion"><span id="puntuacion"></span>/5</p>
+                        </div>
+                        {% set id = namespace(found = param["juegoElegido"][0] ) %}
+                        {% set titulo = namespace(found = param["juegoElegido"][1] ) %}
+                        <input type="hidden" id="idjuego" name="idjuego" value={{id.found}}>
+                        <input type="hidden" id="nombrejuego" name="nombrejuego" value="{{titulo.found}}">
+                        <button type="button" id="enviar" onclick="{{"queryAjaxForm('/juego/"+param["juegoElegido"][1]|replace("'","\\\'")+"/calificarJuego','reseñabox','tuform')"}}">Enviar Reseña</button>
+                    </form>
+                </div>
+        {% elif session.get("nombre")==None %}
+                <h2 class="msjreseña msjcompra" id="msjsesionreseña">Debes iniciar sesión para añadir una reseña del juego</h2>
+        {% else %}
+                <h2 class="msjreseña msjcompra" id="msjreseñado">Ya has reseñado este juego</h2>    
+        {% endif %}
+        <div id="errorbox">
+            <h2 id="errorgeneral">{{param["msj"]}}</h2>
+        </div>

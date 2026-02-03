@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="/static/icon/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/layout.css">
+    {% block head %}
+    <title>Layout</title>
+    {% endblock %}
+</head>
+<body>
+    {% include "topicons.html" %}
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <p id="overlength">{{param["footer"]}}</p>
+    </footer>
+    <script src="/static/js/layout.js"></script>
+    {% block script %}
+    {% endblock %}
+</body>
+</html>

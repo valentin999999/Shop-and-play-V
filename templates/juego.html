@@ -1,0 +1,137 @@
+{% extends "layout.html" %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/juego.css">
+    <title>{{param["juegoElegido"][1]}}</title>
+{% endblock %}
+{% block content %}
+    <h2 id="titulojuego">{{param["juegoElegido"][1]}}</h2>
+    <img src={{"/static/uploads/"+param["juegoElegido"][6]}} alt="{{param["juegoElegido"][1]}}" id="imagenjuego">
+    <div id="tagbox">
+        {% if param["tagsjuego"][0] %}
+            <h3 class="titulo" id="titulotag">Etiquetas para este juego</h3>
+            <hr class="barra" id="barratag">
+            {% for tag in param["tagsjuego"] %}
+                <a class="taglink" href={{"/resultados?searchbar=%23"+tag+"&buscar=Enviar"}}><button class="tag" type="button">{{tag}}</button></a>
+            {% endfor %}
+        {% else %}
+            <h3 class="titulo" id="titulotag">Este juego no posee etiquetas</h3>
+        {% endif %}
+    </div>
+    <form id="comprabox" method="POST" action="/añadirJuegoCarrito">
+    {% set comprado = param["juegoElegido"][0] in param["compras"] %}
+    {% set agotado = param["juegoElegido"][3] == 0 %}
+    {% set deuda = session.get("pagopendiente") %}
+    {# {{ comprado|pprint }} {{ agotado|pprint }} {{ deuda|pprint }} #}
+    
+    {% if not comprado and not agotado and not deuda and deuda != None %} 
+        <h3 id="titulocompra" class="titulo">{{"Comprar "+param["juegoElegido"][1]}}</h3>
+        <hr class="barra" id="barracompra">
+        <h4 id="precio">{{"$"+param["juegoElegido"][2]|string}}</h4>
+        <label for="unidadinput" id="etiquetaunidad">Unidades</label>
+        <div id="unidadbox">
+            <input 
+                type="range" 
+                id="unidadinput" 
+                min="1" 
+                {% if param["juegoElegido"][3] < 10 %}
+                    max = "{{param["juegoElegido"][3]}}"
+                {% else %}
+                    max = "10"
+                {% endif %}
+                value="1" 
+                oninput="cantidad()" 
+                name="unidadinput"
+            >
+            <p id="unidadvalor"></p>
+        </div>
+        <input type="hidden" id="idjuego" name="idjuego" value={{param["juegoElegido"][0]}}>
+        <input type="submit" id="comprainput">
+        <button id="botoncompra">Añadir al carrito</button>
+    {% else %}
+        {% if comprado %}
+            <h2 class="msjcompra" id="msjcomprado">Juego ya añadido al carrito</h2>
+        {% elif agotado %}
+            <h2 class="msjcompra" id="msjagotado">Juego sin stock</h2>
+        {% elif deuda %}
+            <h2 class="msjcompra" id="msjdebido">Validación de pago pendiente</h2>
+        {% else %}
+            <h2 class="msjcompra" id="msjsesion">Debes iniciar sesión para añadir juegos al carrito</h2>
+        {% endif %}
+    {% endif %}
+    </form>
+    <h4 id="stocktexto"> {{"Stock disponible : "+param["juegoElegido"][3]|string}}</h4>
+    <hr class="barra" id="barraacerca1">
+    <h3 class="titulo" id="tituloacerca">ACERCA DE ESTE JUEGO</h3>
+    <hr class="barra" id="barraacerca2">
+    <p id="acercajuego">{{param["juegoElegido"][4]}}</p>
+    <div id="reseñabox">
+        <h3 id="tituloreseña" class="titulo">RESEÑAS DE ESTE JUEGO</h3>
+        <hr class="barra" id="barrareseña">
+        {% set nombre = namespace(found=true) %}
+        {% for reseña in param["reseñas"] %}
+            {% if reseña[0]==session.get("nombre") %}
+                {% set nombre.found = false %}
+            {% endif %}
+                <div class="reseña" 
+                {% if reseña[0]==session.get("nombre") %}
+                    id="mireseña"
+                {% endif %}
+                >
+                
+                <h4 class="titulonombre">{{reseña[0]}}</h4>
+                <p class="textoreseña">{{reseña[1]}}</p>
+                    {% if reseña[0]==session.get("nombre") %}
+                        {% set r = reseña%}
+                        <form id="eliminarbox" method="POST" action="">
+                            <input type="hidden" id="reseñaId" name="reseñaId" value={{reseña[2]}}>
+                            <input type="hidden" id="juegoTitulo" name="juegoTitulo" value={{param["juegoElegido"][1]}}>
+                            <button 
+                                type="button" 
+                                id="eliminarreseña" 
+                                onclick="{{"queryAjaxForm('/juego/"+param["juegoElegido"][1]|replace("'","\\\'")+"/eliminarReseña','reseñabox','eliminarbox')"}}"
+                                title="Eliminar reseña"
+                            >
+                            &#10761
+                            </button>
+                        </form>
+                    {% endif %}
+            </div>
+        {% endfor %}
+        {% if session.get("nombre")!=None and nombre.found %}
+                <div class="reseña" id="tureseña">
+                    <h4 class="titulonombre" id="tunombre">{{session.get("nombre")}}</h4>
+                    <form action="" id="tuform" method="POST">
+                        <div id="calificacion">
+                            <input 
+                                type="range" 
+                                name="tunumero"
+                                id="tunumero" 
+                                placeholder="Califica este juego" 
+                                min="1" 
+                                max="5" 
+                                step="0.5" 
+                                oninput="calificar()" 
+                                value="0"
+                            >
+                            <p id="textopuntuacion"><span id="puntuacion"></span>/5</p>
+                        </div>
+                        {% set id = namespace(found = param["juegoElegido"][0] ) %}
+                        {% set titulo = namespace(found = param["juegoElegido"][1] ) %}
+                        <input type="hidden" id="idjuego" name="idjuego" value={{id.found}}>
+                        <input type="hidden" id="nombrejuego" name="nombrejuego" value="{{titulo.found}}">
+                        <button type="button" id="enviar" onclick="{{"queryAjaxForm('/juego/"+param["juegoElegido"][1]|replace("'","\\\'")+"/calificarJuego','reseñabox','tuform')"}}">Enviar Reseña</button>
+                    </form>
+                </div>
+        {% elif session.get("nombre")==None %}
+                <h2 class="msjreseña msjcompra" id="msjsesionreseña">Debes iniciar sesión para añadir una reseña del juego</h2>
+        {% else %}
+                <h2 class="msjreseña msjcompra" id="msjreseñado">Ya has reseñado este juego</h2>    
+        {% endif %}
+        <div id="errorbox">
+            <h2 id="errorgeneral">{{param["msj"]}}</h2>
+        </div>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="/static/js/juego.js"></script>
+{% endblock %}

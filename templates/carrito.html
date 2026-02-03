@@ -1,0 +1,74 @@
+{% extends "layout.html" %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/carrito.css">
+    <title>Carrito</title>
+{% endblock %}
+{% block content %}
+    {% if session.get("nombre")!=None %}
+        <div id="listajuegos">
+            <h2 id="titulolista">Carrito de Compras</h2>
+            <h2 id="mensajevacio">No tienes juegos en el carrito</h2>
+            {% for compra in param["carritoJuegos"] %}
+                <div class="juego" id={{"juego"+loop.index|string}} onchange="obtenerValores()">
+                    <img src={{"/static/uploads/"+compra[0]}} alt={{compra[0]+" portada"}} class="juegoimagen">
+                    <div class="juegodetalle">
+                        <h5 class="juegonombre">{{compra[1]}}</h5>
+                        {% set precio = compra[2]|float %}
+                        <h4 class="juegoprecio">{{"${:.2f}".format(precio)}}</h4>
+                    </div>
+                    <form class="juegonumerobox" action="" id={{"form"+loop.index|string}} method="POST" enctype="multipart/form-data">
+                            <div class="numerobox">
+                                <input 
+                                    name={{"numero"+loop.index|string}}
+                                    type="range" 
+                                    class="juegonumero" 
+                                    value={{compra[3]}} 
+                                    min="1" 
+                                    max="10" 
+                                    oninput="obtenerValores()" 
+                                    onclick="obtenerValores()" 
+                                    onblur="obtenerValores()" 
+                                    ontouchend="obtenerValores()"
+                                >
+                                <p class="numerovalor">{{compra[3]}}</p>
+                                <input 
+                                    type="hidden" 
+                                    name={{"cantidadinicial"+loop.index|string}}  
+                                    value={{compra[3]}}
+                                    class = "cantidadInicial"
+                                >
+                            </div>
+                        <button type="button" class="eliminar" onclick="queryAjaxForm('eliminarJuegoCarrito','listajuegos','{{'form'+loop.index|string}}')">&#10761</button>
+                        <input type="hidden" class="idjuego" value="{{compra[5]}}" name={{"idjuego"+loop.index|string}}>
+                        <input type="hidden" class="idcompra" value="{{compra[4]}}" name={{"idcompra"+loop.index|string}}>
+                        <input 
+                            type="hidden" 
+                            class="stockadicional" 
+                            value="{{compra[3]}}" 
+                            name="{{"idcompra"+loop.index|string}}"
+                            id="{{"idcompra"+loop.index|string}}"
+                        >
+                    </form>
+                    <hr class="barra">
+                </div>
+            {% endfor %}
+        </div>
+
+        <form id="abonobox" action="/abonar" method="POST">
+            <h4 id="tituloabono">MONTO A ABONAR</h4>
+            <h3 id="abonoprecio">{{"$"+param["montoinicial"]|string}}</h3>
+            <input type="hidden" id="inputfecha" name="inputfecha" value="1">
+            <input type="hidden" id="inputvalor" name="inputvalor" value="2">
+            <input type="hidden" id="inputproducto" name="inputproducto" value="3">
+            <input type="hidden" id="inputstock" name="inputstock" value="4">
+            <input type="submit" id="abonar">
+            <label for="abonar" id="abonaretiqueta">Abonar</label>
+        </form>
+    {% else %}
+        <h1 id="msjsesion">Debes iniciar sesión para acceder al carrito</h1>
+    {% endif %}
+{% endblock %}
+{% block script %}
+        <script src="/static/js/ajax.js"></script>
+        <script src="/static/js/carrito.js"></script>
+{% endblock %}

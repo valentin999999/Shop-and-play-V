@@ -1,0 +1,38 @@
+{% if param["registro"]["errores"][0]["texto"]!="Cuenta creada correctamente" %}
+    <div id="errorbox">
+        {% for error in param["registro"]["errores"] %}
+            <h4 class="error" id={{error["id"]}}>{{error["texto"]}}</h4>
+        {% endfor %}
+    </div>
+    <form action="" id="registrobox" method = "POST">
+        <h2 id="registrotitulo">Crear cuenta</h2>
+        {% for titulo in param["registro"]["titulos"] %}
+            <h4 class="datotitulo" id={{titulo["id"]}}>{{titulo["texto"]}}</h4>
+        {% endfor %}
+        {% for input in param["registro"]["inputs"] %}
+        <input 
+            required
+            name={{input["id"]}}
+            type={{input["type"]}} 
+            {% if input["type"] == "text" %}
+                minlength = "3"
+                maxlength = "20"
+            {% elif input["email"] %}
+                minlength="9"
+                maxlength="40"
+            {% elif input["password"] %}
+                minlength="8"
+            {% endif %}
+            class="datoinput" 
+            id={{input["id"]}}
+            placeholder="{{input["placeholder"]}}"
+            value = "{{input["value"]}}"
+            {% if input["type"]=="button" %}
+                onclick="main()"
+            {% endif %}
+        >
+        {% endfor %}
+    </form>
+{% else %}
+    <h1 id="msjexito">Cuenta creada correctamente</h1>
+{% endif %}

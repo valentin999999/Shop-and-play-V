@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/actualizar.css">
+    <title>Actualizar datos</title>
+{% endblock %}
+{% block content %}
+{% if not param["msj"] and session.get("nombre")!=None %}
+        <div id="errorbox">
+        {% for error in param["actualizar"]["errores"] %}
+            <h4 class="error" id={{error["id"]}}>{{error["texto"]}}</h4>
+        {% endfor %}
+    </div>
+    <form action="" id="actualizarbox" method = "POST">
+        <h2 id="actualizartitulo">Actualizar datos</h2>
+        {% for titulo in param["actualizar"]["titulos"] %}
+            <h4 class="datotitulo" id={{titulo["id"]}}>{{titulo["texto"]}}</h4>
+        {% endfor %}
+        {% for input in param["actualizar"]["inputs"] %}
+        <input 
+            required
+            name={{input["id"]}}
+            type={{input["type"]}} 
+            {% if input["type"] == "text" %}
+                minlength = "3"
+                maxlength = "20"
+            {% elif input["type"]=="email" %}
+                minlength="6"
+                maxlength="40"
+            {% elif input["type"]=="password" %}
+                minlength="8"
+                maxlength="50"
+            {% endif %}
+            class="datoinput" 
+            id={{input["id"]}}
+            placeholder="{{input["placeholder"]}}"
+            {% if input["type"]!="button" %}
+                value = {{param["datos"][loop.index0]}}
+            {% else %}
+                value = "Actualizar"
+            {% endif %}
+            {% if input["type"]=="button" %}
+                onclick="main()"
+            {% endif %}
+        >
+        {% endfor %}
+    </form>
+{% elif param["msj"] %}
+    <h1 id="msjexito">{{param["msj"]}}</h1>
+{% else %}
+    <h1 id="msjsesion">Debes iniciar sesión para acceder a esta página</h1>
+{% endif %}
+{% endblock %}
+{% block script %}
+<script src="/static/js/actualizar.js"></script>
+{% endblock %}

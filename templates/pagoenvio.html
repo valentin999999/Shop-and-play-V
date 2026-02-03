@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/pagoenvio.css">
+    <title>Pago</title>
+{% endblock %}
+{% block content %}
+    {% if session.get("pagopendiente") and session.get("nombre")!=None %}
+        <div id="errorbox">
+            {% for error in param["pagoenvio"]["errores"] %}
+                <h4 class="error" id={{"error"+error["id"]}}>{{error["msj"]}}</h4>
+            {% endfor %}
+        </div>
+        <div id="opcionbox">
+            {% for opcion in param["pagoenvio"]["titulos"] %}
+                <button class="opcion" id={{opcion+"boton"}} onclick={{opcion+"()"}}>{{opcion}}</button>
+            {% endfor %}
+        </div>
+        <div id="inicialbox">
+            <h1 id="inicialtitulo">Seleccione entre Pickup en tienda o Delivery</h1>
+        </div>
+        <form action="" id="pickup" class="pago" method="POST">
+            <h2 id="pickuptitulo">Pickup</h2>
+            {% for dato in param["pagoenvio"]["adi"] %}
+                <h5 id="{{dato["id"]}}" class="datoadicional">{{dato["texto"]}}</h5>
+            {% endfor %}
+            {% for input in param["pagoenvio"]["input"][:2] %}
+                    <input 
+                        required
+                        type={{input["type"]}}  
+                        name="{{input["id"]}}" 
+                        {% if input["type"]=="button" %}
+                        value="{{input["value"]}}" 
+                        onclick = "main()"
+                        {% endif %}
+                        placeholder="{{input["placeholder"]}}" 
+                        {% if input["type"]=="button" %}
+                            id="{{input["id"]+param["pagoenvio"]["titulos"][0]}}"
+                            class="confirmar"
+                        {% elif input["type"]!="file" %}
+                            class="datoinput"
+                        {% endif %}
+                        class={{input["class"]}} 
+                    >
+            {% endfor %}
+            {% for titulo in param["pagoenvio"]["datotitulo"][:1] %}
+                    <h3 id="{{titulo["id"]}}" class="datotitulo">{{titulo["texto"]}}</h3>
+            {% endfor %}
+        </form>
+        <form action="" id="delivery" class="pago" method="POST">
+            <h2 id="deliverytitulo">Delivery</h2>
+            {% for dato in param["pagoenvio"]["adi"] %}
+                <h5 id="{{dato["id"]}}" class="datoadicional">{{dato["texto"]}}</h5>
+            {% endfor %}
+            {% for input in param["pagoenvio"]["input"] %}
+                    <input 
+                        required
+                        type={{input["type"]}}  
+                        name="{{input["id"]}}" 
+                        {% if input["type"]=="button" %}
+                        value="{{input["value"]}}" 
+                        onclick = "main()"
+                        {% endif %}
+                        placeholder="{{input["placeholder"]}}" 
+                        {% if input["type"]=="button" %}
+                            id="{{input["id"]+param["pagoenvio"]["titulos"][0]}}"
+                            class="confirmar"
+                        {% elif input["type"]!="file" %}
+                            class="datoinput"
+                            id = "{{input["id"]}}"
+                        {% else %}
+                            id = "{{input["id"]}}"
+                        {% endif %}
+                        class={{input["class"]}} 
+                    >
+            {% endfor %}
+            {% for titulo in param["pagoenvio"]["datotitulo"] %}
+                    <h3 class="datotitulo" id="{{titulo["id"]}}">{{titulo["texto"]}}</h3>
+            {% endfor %}
+            <div id="dilema">
+                {% for di in param["pagoenvio"]["dilema"] %}
+                    <input type="radio" id="{{di["id"]}}" name="sino" onclick={{"departamento"+di["id"]+"()"}} required>
+                    <label for={{di["id"]}} class="dilemaboton">{{di["texto"]}}</label>
+                {% endfor %}
+            </div>
+        </form>
+    {% elif not session.get("nombre") %}
+        <h1 id="msjsesion">Debe iniciar sesión para acceder a esta página</h1>
+    {% else %}
+        <h1 id="msjpago">No tiene ningún pago pendiente</h1>
+    {% endif %}
+{% endblock %}
+{% block script %}
+<script src="/static/js/pagoenvio.js"></script>
+{% endblock %}

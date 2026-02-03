@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/crearjuego.css">
+    <title>Crear Juego</title>
+{% endblock %}
+{% block content %}
+    {% if not param["msj"] %}
+        <div id="errorbox">
+            <h4 id="errorgeneral">{{param["msj"]}}</h4>
+            {% for error in param["crearJuego"]["errores"] %}
+                <h4 class="error" id="{{"error"+error["id"]}}">{{error["texto"]}}</h4>
+            {% endfor %}
+        </div>
+        <form id="juegobox" method="POST" action="">
+            <h2 id="titulojuegobox">Crear Juego</h2>
+            {% for input in param["crearJuego"]["input"] %}
+                <label 
+                    for={{"juego"+input["id"]}} 
+                    class="juegotitulo" 
+                    id="{{"etiqueta"+input["id"]}}"
+                >
+                {{input["label"]+" del juego"}}
+            </label>
+            <input 
+                required
+                {% if input["type"]!="file" %}
+                    class="juegoinput"
+                {% endif %}
+                type={{input["type"]}}
+                id="{{"juego"+input["id"]}}"
+                name="{{"juego"+input["id"]}}"
+                placeholder="{{"Introduzca "+input["placeholder"]+" del juego"}}" 
+                {% if input["type"]=="text" %}
+                    maxlength={{input["maxlength"]}}
+                {% endif %}
+                {% if input.get("min")!=None %}
+                    min={{input["min"]}}
+                    max={{input["max"]}}
+                    step={{input["step"]}}
+                    value={{input["value"]}}
+                    oninput={{"actualizar"+input["id"].capitalize()+"()"}}
+                {% endif %}
+            >
+            {% if input.get("min")!=None %}
+                {% if input.get("max")=="20.00" %}
+                    {% set signo = "$"%}
+                    {% set unidad = "" %}
+                {% else %}
+                    {% set unidad = " Unidad/es" %}
+                    {% set signo = "" %}
+                {% endif %}
+                <p 
+                    id="{{input["id"]}}" 
+                    class="cantidad"
+                >
+                {{input["id"].capitalize()+" : "+signo}}
+                <span id="{{input["id"]+"valor"}}">
+                    {{input["value"]}}
+                </span>
+                {% if signo == "" %}
+                    <span id="unidad">
+                        {{unidad}}
+                    </span>
+                {% endif %}
+                </p>
+            {% endif %}
+            {% endfor %}
+            <div id="tagbox">
+                {% for tag in param["tags"] %}
+                    <div class="opcionbox">
+                        <input class="taginput" type="checkbox" id={{"tag"+loop.index|string}} name={{"tag"+loop.index|string}} value={{tag}}>
+                        <label class="etiquetatag" for={{"tag"+loop.index|string}}>{{tag}}</label>
+                    </div>
+                {% endfor %}
+            </div>
+            <div id="nuevoTagBox">
+                <input type="text" id="nuevoTagTexto" placeholder="Escriba nuevo tag">
+                <button type="button" id="nuevotag" onclick="añadirTag()">Añadir Tag</button>
+            </div>
+            <input type="submit" id="enviar">
+            <label for="enviar" id="etiquetaboton">
+                <button type="button" id="juegoboton">Crear juego</button>
+                {#queryAjaxForm('validarjuego','content','juegobox')#}
+            </label>
+        </form>
+    {% else %}
+        <h1 id="msj">Juego creado correctamente</h1>
+    {% endif %}
+{% endblock %}
+{% block script %}
+    <script src="/static/js/crearjuego.js"></script>
+{% endblock %}

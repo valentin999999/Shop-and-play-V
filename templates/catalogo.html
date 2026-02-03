@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/catálogo.css">
+    <title>Catálogo de juegos</title>
+{% endblock %}
+{% block content %}
+    <div id="errorbox">
+        <h4 id="errorgeneral">{{param["msj"]}}</h4>
+    </div>
+    <h3 id="catalogotitulo">Catálogo de Juegos</h3>
+    <div id="catalogojuegos">
+        {% for juego in param["listaJuegos"] %}
+            {% if juego[3]!=0 %}
+                <div class="juego">
+                    <h5 class="juegonombre">{{juego[0]}}</h5>
+                    <a href="{{"/juego/"+juego[0]}}" class="juegolink">
+                        <img 
+                            src="{{"/static/uploads/"+juego[1]}}"
+                            class="juegoimagen"
+                            alt="{{juego[0]+" portada"}}"
+                            title="{{juego[0]+" portada"}}"
+                        >
+                    </a>
+                    {% set precio = juego[2]|string %}
+                    <h4 class="juegoprecio">{{"$"+precio}}</h4>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <div id="navegarbox">
+        <button class="navegar" id="anterior">Anterior</button>
+        <button class="navegar" id="siguiente">Siguiente</button>
+    </div>
+{% endblock %}
+{% block script %}
+<script src="/static/js/catálogo.js"></script>
+{% endblock %}

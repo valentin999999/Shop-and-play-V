@@ -1,0 +1,66 @@
+{% if param["msj"]!="Datos del juego editados correctamente" %}
+        <div id="errorbox">
+            <h4 id="errorgeneral">{{param["msj"]}}</h4>
+        </div>
+        <form id="juegobox" method="POST" action="" enctype="multipart/form-data">
+            <h2 id="titulojuegobox">Editar Juego</h2>
+            {% for input in param["editarjuego"]["input"] %}
+                <label 
+                    for={{"juego"+input["id"]}} 
+                    class="juegotitulo" 
+                    id="{{"etiqueta"+input["id"]}}"
+                >
+                {{input["label"]+" del juego"}}
+            </label>
+            <input 
+                required
+                {% if input["type"]!="file" %}
+                    class="juegoinput"
+                    value = {{input["value"]}}
+                {% endif %}
+                type={{input["type"]}} 
+                id="{{"juego"+input["id"]}}" 
+                name="{{"juego"+input["id"]}}" 
+                placeholder="{{"Introduzca "+input["placeholder"]+" del juego"}}" 
+                {% if input["type"]=="text" %}
+                    maxlength={{input["maxlength"]}}
+                {% endif %}
+                {% if input.get("min")!=None %}
+                    min={{input["min"]}}
+                    max={{input["max"]}}
+                    step={{input["step"]}}
+                {% endif %}
+            >
+            {% if input.get("min")!=None %}
+                {% if input.get("max")=="20.00" %}
+                    {% set signo = "$"%}
+                    {% set unidad = "" %}
+                {% else %}
+                    {% set unidad = " Unidad/es" %}
+                    {% set signo = "" %}
+                {% endif %}
+                <p 
+                    id="{{input["id"]}}" 
+                    class="cantidad"
+                >
+                {{input["id"].capitalize()+" : "+signo}}
+                <span id="{{input["id"]+"valor"}}">
+                    {{input["value"]}}
+                </span>
+                {% if signo == "" %}
+                    <span id="unidad">
+                        {{unidad}}
+                    </span>
+                {% endif %}
+                </p>
+            {% endif %}
+            {% endfor %}
+            <input type="hidden" name="idjuego" value={{param["juegoeditado"][6]}}>
+            <input type="submit" id="enviar">
+            <label for="enviar" id="etiquetaboton">
+                <button type="button" id="juegoboton" onclick="queryAjaxForm('{{'/juego/'+param["juegoeditado"][0]+'/validaredicion'}}','content','juegobox')">Confirmar</button>
+            </label>
+        </form>
+    {% else %}
+        <h1 id="msjexito">{{param["msj"]}}</h1>
+    {% endif %}

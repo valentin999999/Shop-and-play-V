@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/catálogo.css">
+    <title>Resultados para "{{param["searchbar"]}}"</title>
+{% endblock %}
+{% block content %}
+    {% if param["vacio"] %}
+        <h1 id="msjresultados">{{param["vacio"]}}</h1>
+    {% endif %}
+    {% if param["searchbar"][0] != "#" %}
+        <h3 id="catalogotitulo">Resultados para "{{param["searchbar"]}}"</h3>
+    {% else %}
+        <h3 id="catalogotitulo">Juegos con la etiqueta de "{{param["searchbar"][1:]}}"</h3>
+    {% endif %}
+    <div id="catalogojuegos">
+        {% for juego in param["juegosBuscados"] %}
+            <div class="juego">
+                    <h5 class="juegonombre">{{juego[0]}}</h5>
+                    <a href="{{"/juego/"+juego[0]}}" class="juegolink">
+                        <img 
+                            src="{{"/static/uploads/"+juego[1]}}"
+                            class="juegoimagen"
+                            alt="{{juego[0]+" portada"}}"
+                            title="{{juego[0]+" portada"}}"
+                        >
+                    </a>
+                    {% set precio = juego[2]|string %}
+                    <h4 class="juegoprecio">{{"$"+precio}}</h4>
+                </div>
+        {% endfor %}
+    </div>
+    <div id="navegarbox">
+        <button class="navegar" id="anterior">Anterior</button>
+        <button class="navegar" id="siguiente">Siguiente</button>
+    </div>
+{% endblock %}
+{% block script %}
+    <script src="/static/js/catálogo.js"></script>
+    <script src="/static/js/resultados.js"></script>
+{% endblock %}

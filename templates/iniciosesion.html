@@ -1,0 +1,42 @@
+{% extends "layout.html" %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/iniciosesion.css">
+    <title>Iniciar Sesión</title>
+{% endblock %}
+{% block content %}
+    <div id="errorbox">
+        <h4 class="error" id="errorgeneral">{{param["msj"]}}</h4>
+    </div>
+    {% if session.get("nombre")==None %}
+        <form action="" id="loginform" method="POST">
+            <h2 id="logintitulo">Iniciar Sesión</h2>
+            {% for titulo in param["iniciosesion"]["titulos"] %}
+                <h4 class="datotitulo" id="{{titulo["id"]}}">{{titulo["texto"]}}</h4>
+            {% endfor %}
+            {% for input in param["iniciosesion"]["inputs"] %}
+                <input
+                    required
+                    name="{{input["id"]}}"
+                    class="datoinput"
+                    placeholder="{{input["placeholder"]}}"
+                    type={{input["type"]}} 
+                    id="{{input["id"]}}"
+                    value="{{input["value"]}}"
+                    {% if input["type"]=="button" %}
+                        onclick = "queryAjaxForm('validarsesion','content','loginform')"
+                    {% endif %}
+                >
+            {% endfor %}
+        </form>
+    {% else %}
+        <div id="sesionbox">
+            <h1 id="sesionmsj">Ya has iniciado sesión</h1>
+        </div>
+    {% endif %}
+    
+{% endblock %}
+{% if session.get("id")==None %}
+    {% block script %}
+        <script src="/static/js/iniciosesion.js"></script>
+    {% endblock %}
+{% endif %}

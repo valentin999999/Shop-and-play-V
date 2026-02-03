@@ -1,0 +1,67 @@
+<div id="topicons">
+    <div id="left">
+            <a href="/catalogo" class="icon">
+                <img src="/static/icon/nulogo.svg" alt="Shop & Play" id="home" title="Página de inicio de Shop & Play">
+            </a>
+            <form action="/resultados" id="searchbarbox" method="GET">
+                <input type="text" placeholder="Busca juegos..." id="searchbar" name="searchbar" oninput="autosugerencia()" onclick="autosugerencia()" required>
+                <input type="submit" href="#" id="lupabutton" class="icon" name="buscar">
+                <label for="lupabutton" id="lupaetiqueta">
+                    <img src="/static/icon/search.svg" alt="Buscar" class="icon" id="lupa" title="Buscar">
+                </label>
+            </form>
+            <div id="busquedabox">
+                {% for nombre in param["listaTitulosJuegos"] %}
+                    <a href="{{"/juego/"+nombre}}" id="{{nombre+"link"}}" class="ares">
+                        <h3 id="{{nombre}}" class="res">{{nombre}}</h3>
+                    </a>
+                {% endfor %}
+                {% for tag in param["tags"] %}
+                    <a href={{"/resultados?searchbar=%23"+tag+"&buscar=Enviar"}} id={{tag+"link"}} class="atagres">
+                        <h3 id="{{tag}}" class="tagres">{{tag}}</h3>
+                    </a>
+                {% endfor %}
+            </div>
+    </div>
+    <div id="right">
+        {% if session.get("nombre")==None %}
+            {% for link in param["topicons"]["right"][6:] %}
+                <a 
+                    href={{"/"+link["id"]}}
+                    id="{{link["id"]}}"
+                    class="enlace"
+                >
+                {{link["titulo"]}}
+                </a>
+            {% endfor %}
+        {% else %}
+            {% if session.get("pagopendiente") %}
+                {% set num = 0 %}
+            {% else %}
+                {% set num = 1 %}
+            {% endif %}
+            {% for caja in param["topicons"]["right"][num:6] %}
+                {% if (loop.index != 1 and loop.index != 2 and loop.index != 4) or session.get("rol")=="admin" %}
+                    <a 
+                        href={{caja["href"]}}
+                        id="{{caja["ida"]}}"
+                        class="icon"
+                    >
+                        <img 
+                            src={{"/static/icon/"+caja["contenido"]+".svg"}} 
+                            id="{{caja["idimg"]}}"
+                            class="icon" 
+                            title="{{caja["titulo"]}}"
+                            alt="{{caja["titulo"]}}"
+                        >
+                    </a>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        <div id="cambiobox">
+            {% for opcion in param["topicons"]["cambio"] %}
+                <a href={{"/"+opcion["id"]}} id="{{opcion["id"]}}" class="adimenu">{{opcion["texto"]}}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>

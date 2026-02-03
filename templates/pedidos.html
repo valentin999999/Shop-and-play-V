@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block head %}
+    <link rel="stylesheet" href="/static/css/pedidos.css">
+    <title>Pedidos</title>
+{% endblock %}
+{% block content %}
+    <form action="" id="busqueda">
+                <input type="text" id="buscar" placeholder="Busca pedidos...">
+                <button id="buscarboton">Buscar</button>
+            </form>
+            <form action="" id="tablaform">
+                <table id="tabla">
+                    <tr>
+                {% for titulo in param["pedidos"][0] %}
+                        <th>{{titulo}}</th>
+                {% endfor %}
+                    </tr>
+                {% for registro in param["pedidos"][1:] %}
+                    <tr>
+                        <td>{{registro[0]}}</td>
+                        <td>{{registro[1]}}</td>
+                        <td>{{registro[2]}}</td>
+                        <td>{{registro[3]}}</td>
+                        <td><a href="{{'/static/uploads/'+registro[4]}}">Ver comprobante</a></td>
+                        <td>{{registro[5]}}</td>
+                        <td>{{registro[6]}}</td>
+                        <td>{{registro[7]}}</td>
+                        <td>{{registro[8]}}</td>
+                    </tr>
+                {% endfor %}
+                    <tr id="guardarfila">
+                        <td id="guardarcelda">
+                            <button id="guardar">Guardar cambios</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+{% endblock %}

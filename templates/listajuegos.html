@@ -1,0 +1,47 @@
+            <h2 id="titulolista">Carrito de Compras</h2>
+            <h2 id="mensajevacio">No tienes juegos en el carrito</h2>
+            {% for compra in param["carritoJuegos"] %}
+                <div class="juego" id={{"juego"+loop.index|string}} onchange="obtenerValores()">
+                    <img src={{"/static/images/"+compra[0]}} alt={{compra[0]+" portada"}} class="juegoimagen">
+                    <div class="juegodetalle">
+                        <h5 class="juegonombre">{{compra[1]}}</h5>
+                        {% set precio = compra[2]|float %}
+                        <h4 class="juegoprecio">{{"${:.2f}".format(precio)}}</h4>
+                    </div>
+                    <form class="juegonumerobox" action="" id={{"form"+loop.index|string}} method="POST" enctype="multipart/form-data">
+                            <div class="numerobox">
+                                <input
+                                    name={{"numero"+loop.index|string}}
+                                    type="range" 
+                                    class="juegonumero" 
+                                    value={{compra[3]}} 
+                                    min="1" 
+                                    max="10" 
+                                    oninput="obtenerValores()" 
+                                    onclick="obtenerValores()" 
+                                    onblur="obtenerValores()" 
+                                    ontouchend="obtenerValores()"
+                                >
+                                <p class="numerovalor">{{compra[3]}}</p>
+                                <input 
+                                    type="hidden" 
+                                    name={{"cantidadinicial"+loop.index|string}}  
+                                    value={{compra[3]}}
+                                    class = "cantidadInicial"
+                                >
+                            </div>
+                        <button type="button" class="eliminar" onclick="queryAjaxForm('eliminarJuegoCarrito','listajuegos','{{'form'+loop.index|string}}')">&#10761</button>
+                        <input type="hidden" class="idjuego" value="{{compra[5]}}" name={{"idjuego"+loop.index|string}}>
+                        <input type="hidden" class="idcompra" value="{{compra[4]}}" name={{"idcompra"+loop.index|string}}>
+                        <input 
+                            type="hidden" 
+                            class="stockadicional" 
+                            value="{{compra[3]}}" 
+                            name="{{"idcompra"+loop.index|string}}"
+                            id="{{"idcompra"+loop.index|string}}"
+                        >
+                       
+                    </form>
+                    <hr class="barra">
+                </div>
+            {% endfor %}
