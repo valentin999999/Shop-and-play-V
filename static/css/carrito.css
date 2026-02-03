@@ -1,0 +1,300 @@
+#content{
+    display: grid;
+    grid-template-rows: 65vh 1fr;
+    background-color: black;
+}
+
+#msjsesion{
+    grid-column: 1 / 3;
+    place-self: center;
+    text-align: justify;
+    color: red;
+}
+
+#listajuegos{
+    display: grid;
+    grid-template-rows: 6vh repeat(auto-fill, 20vh);
+    overflow-y: scroll;
+    margin: 2vh 2vh 1vh 2vh;
+    border-radius: 2vh;
+    background-color: white;
+}
+
+#titulolista{
+    margin: 2vh 0 0 0;
+    text-align: center;
+    font-size: 2.6vh;
+}
+
+#mensajevacio{
+    display: none;
+    text-align: center;
+}
+
+.juego{
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+    margin: 0 3% 3% 3%;
+    border-radius: 2vh;
+}
+
+.juegoimagen{
+    place-self: center;
+    height: 12vh;
+    width: 8vh;
+    margin: 2vh;
+    border-radius: 1vh;
+}
+
+.juegodetalle{
+    display: grid;
+    align-content: space-evenly;
+    width: 9vh;
+}
+
+.juegonombre{
+    text-align: center;
+    margin: 0;
+    font-size: 1.5vh;
+}
+
+.juegoprecio{
+    justify-self: center;
+    margin: 0;
+    font-size: 2vh;
+}
+
+.juegonumerobox{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-content: center;
+    justify-self: right;
+    align-self: center;
+    height: 100%;
+    width: 100%;
+}
+
+.numerobox{
+    display: grid;
+    align-content: space-evenly;
+}
+
+.juegonumero{
+    min-height: 2vh;
+    height:min-content;
+    padding: 0;
+    width: 100%;
+    border: 0.3vh solid black;
+    outline: none;
+    font-size: 1.6vh;
+}
+
+
+.juegonumero:hover{
+    cursor: pointer;
+}
+
+.numerovalor{
+    margin: 0;
+    text-align: center;
+    font-size: 2vh;
+}
+
+.deletesubmit{
+    display: none;
+}
+
+.etiquetaboton{
+    align-content: center;
+}
+
+.etiquetaboton:active{
+    border-color: red;
+    color: red;
+    background-color: white;
+}
+
+
+.eliminar{
+    display: grid;
+    align-content: center;
+    place-self: center;
+    height: 3vh;
+    width: 3vh;
+    padding: 0;
+    font-size: 2vh;
+    border-width: 0.3vh;
+    border-radius: 0.7vh;
+    border-color: white;
+    color: white;
+    background-color: red;
+}
+
+.eliminar:active{
+    border-color: red;
+    color: red;
+    background-color: white;
+}
+
+.eliminar:hover{
+    cursor: pointer;
+    border-color: red;
+    color: red;
+    background-color: white;
+}
+
+.barra{
+    grid-column: 1 / 5;
+    place-self: center;
+    height: 0.2vh;
+    width: 100%;
+    margin: 0;
+    border: none;
+    background-color: black;
+}
+
+#abonobox{
+    display: grid;
+    align-content: space-evenly;
+    justify-self: center;
+    width: 48%;
+    margin: 1vh 2vh 2vh 2vh;
+    border-radius: 2vh;
+    background-color: white;
+}
+
+#tituloabono{
+    margin: 0;
+    text-align: center;
+    font-size: 2vh;
+}
+
+#abonoprecio{
+    margin: 0;
+    text-align: center;
+    font-size: 2.5vh;
+    color: green;
+}
+
+#abonar{
+    display: none;
+}
+
+#abonaretiqueta{
+    justify-self: center;
+    margin: 0;
+    padding: 0.6vh;
+    font-size: 1.5vh;
+    border: 0.3vh solid white;
+    border-radius: 1.2vh;
+    color: white;
+    background-color: blue;
+}
+
+#abonaretiqueta:hover{
+    cursor: pointer;
+    color: blue;
+    border-color: blue;
+    background-color: white;
+}
+
+@media screen and (orientation: landscape){
+    #content{
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: 100%;
+    }
+
+    #listajuegos{
+        place-self: center;
+        width: 40vw;
+        height: 80vh;
+    }
+
+    .juegodetalle{
+        width: 15vh;
+    }
+
+    .juegonombre{
+        font-size: 2.5vh;
+    }
+
+    .juegoprecio{
+        font-size: 2.7vh;
+    }
+
+    #abonobox{
+        place-self: center;
+        height: 40%;
+    }
+
+    #titulolista{
+        font-size: 3.5vh;
+    }
+
+    .juegonumerobox{
+        height: 4.5vh;
+    }
+
+    .eliminar{
+        height: 4.5vh;
+        width: 4.5vh;
+    }
+
+    #tituloabono{
+        font-size: 3.2vh;
+    }
+
+    #abonoprecio{
+        font-size: 3.5vh;
+    }
+
+    #abonaretiqueta{
+        font-size: 2.5vh;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-width: 500px){
+    #listajuegos{
+        width: 75%;
+        justify-self: center;
+    }
+
+    #titulolista{
+        font-size: 3vh;
+    }
+
+    .juegodetalle{
+        width: 14vh
+    }
+
+    .juegonombre{
+        font-size: 2vh;
+    }
+
+    .juegoprecio{
+        font-size: 2.6vh;
+    }
+
+    .eliminar{
+        font-size: 1.3vh;
+    }
+
+    #abonobox{
+        width: 35%;
+    }
+
+    #tituloabono{
+        font-size: 2.4vh;
+    }
+
+    #abonoprecio{
+        font-size: 2.6vh;
+    }
+
+    #abonaretiqueta{
+        font-size: 2vh;
+    }
+}
+
+
+

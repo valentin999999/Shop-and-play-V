@@ -1,0 +1,433 @@
+#content{
+    display: grid;
+    grid-template-rows: 12.5vw;
+    background-color: black;
+}
+
+#titulojuego{
+    align-content: center;
+    margin: 0;
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+#imagenjuego{
+    justify-self: center;
+    width: 90%
+}
+
+#descripcionjuego, #acercajuego{
+    margin: 2vh 0 0 0;
+    justify-self: center;
+    width: 90%;
+    text-align: justify;
+    color: white;
+    background-color: black;
+}
+
+.titulo{
+    align-content: center;
+    margin: 2vh 0 0 0;
+    text-align: center;
+    color: white;
+    background-color: black;
+}
+
+.barra{
+    justify-self: center;
+    height: 0.5vh;
+    width: 90%;
+    margin: 2vh 0 0 0;
+    border: none;
+    background-color: white;
+}
+
+#tagbox{
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    justify-self: center;
+    width: 90%;
+    background-color: black;
+}
+
+#titulotag{
+    grid-column: 1 / 7;
+    margin: 2vh 0 0 0;
+    text-align: center;
+}
+
+#barratag{
+    grid-column: 1 / 7;
+}
+
+.tag{
+    margin: 2vh 0.5vh 0 0.5vh;
+    padding: 0;
+    font-size: 0.8vh;
+    border: solid 0.3vh white;
+    border-radius: 1.2vh;
+    color: white;
+    background-color: blue;
+}
+
+.tag:active{
+    border-color: blue;
+    color:blue;
+    background-color: white;
+}
+
+#comprabox{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-self: center;
+    width: 90%;
+    background-color: black;
+}
+
+#titulocompra{
+    grid-column: 1 / 3;
+}
+
+#precio{
+    margin: 2vh 0 0 0;
+    text-align: center;
+    color: white;
+    background-color: black;
+
+}
+
+#botoncompra{
+    margin: 2vh 0 0 0;
+    justify-self: center;
+    font-size: 2vh;
+    border: 0.3vh solid white;
+    border-radius: 1.2vh;
+    color: white;
+    background-color: rgb(3, 174, 3);
+}
+
+#botoncompra:active{
+    border-color: rgb(3, 174, 3);
+    color:rgb(3, 174, 3);
+    background-color: white;
+}
+
+#tituloacerca{
+    margin: 6vh 0 0 0;
+}
+
+#reseñabox{
+    display: grid;
+    justify-self: center;
+    width: 90%;
+    background-color: black;
+}
+
+.reseña{
+    display: grid;
+    margin: 1vh 0 1vh 0;
+    height: 5vh;
+    grid-template-columns: 4vw max-content 1fr;
+    background-color: rgb(50, 50, 50);
+}
+
+.foto{
+    height: 3vh;
+    width: 3vh;
+    place-self: center;
+}
+
+.titulonombre{
+    margin: 0;
+    text-align: center;
+    place-self: center;
+    color: white;
+    background-color: rgb(50, 50, 50);
+}
+
+.textoreseña{
+    margin: 1vh;
+    text-align: justify;
+    justify-self: right;
+    align-self: center;
+    height: min-content;
+    color: white;
+    background-color: rgb(50, 50, 50);
+}
+
+
+#tuform{    
+    justify-self: right;
+    align-self: center;
+
+}
+
+#tunumero{
+    height: 3.5vh;
+    width: 16vh !important;
+    font-size: 1.6vh;
+    align-self: center;
+    border: 0.3vh solid white;
+    border-radius: 1vh;
+    color: white;
+    background-color: black;
+    width: max-content;
+}
+
+#tunumero:focus{
+    outline: none;
+}
+
+#enviar{
+    align-self: center;
+    height: 3.5vh;
+    font-size: 1.3vh !important;
+    border: 0.3vh solid white;
+    color: white;
+    border-radius: 1vh;
+    background-color: blue;
+}
+
+#enviar:active{
+    color:blue;
+    border-color: blue;
+    background-color: white;
+}
+
+@media screen and (orientation: landscape){
+    #content{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 4.25vw;
+    }
+
+    #titulojuego{
+        grid-column: 1 / 3;
+        justify-self: center;
+        font-size: 4vh;
+    }
+
+    #imagenjuego{
+        width: stretch;
+    }
+
+    #infoinicial{
+        align-content: space-evenly;
+    }
+
+    .titulo{
+        margin: 3vh 0 0 0;
+        font-size: 3vh;
+    }
+
+    #descripcionjuego{
+        font-size: 2vh;
+    }
+
+    #tituloacerca{
+        justify-self: center;
+        width: 90%;
+        text-align: left;
+    }
+
+    .barra{
+        margin: 3vh 0 0 0;
+    }
+
+    #barratag{
+        width: 100%;
+    }
+
+    .tag{
+        font-size: 2vh;
+    }
+
+    #comprabox{
+        grid-template-columns: repeat(4, 1fr);
+        margin: 3vh 0 0 0;
+    }
+
+    #titulocompra{
+        text-align: left;
+    }
+
+    #precio{
+        align-self: center;
+        margin: 3vh 0 0 0;
+        font-size: 3vh;
+    }
+
+    #botoncompra{
+        justify-self: center;
+        align-self: center;
+        width: max-content;
+        margin: 3vh 0 0 0;
+        font-size: 2.3vh;
+    }
+
+    #tituloacerca{
+        grid-row: 4;
+        margin-top: 6vh;
+        justify-self: left;
+        margin-left: 3vh;
+    }
+
+    #barraacerca{
+        grid-row: 5;
+        justify-self: left;
+        width: 75%;
+        margin-left:3vh;
+    }
+
+    #acercajuego{
+        grid-column: 1 / 3;
+        justify-self: left;
+        width: 90%;
+        margin: 3vh 0 0 3vh;
+        font-size: 2vh;
+    }
+
+    #reseñabox{
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        grid-column: 1 / 3;
+        column-gap: 3vh;
+        justify-self: left;
+        width: 95%;
+        margin: 3vh 0 2vh 3vh;
+    }
+
+    .reseña{
+        grid-template-columns: 5vw repeat(2, 1fr);
+        justify-content: space-evenly !important;
+        margin-top: 2vh;
+        height: 7vh;
+    }
+
+    .textoreseña{
+        font-size: 1.9vh;
+        justify-self: center;
+    }
+
+    .titulonombre{
+        font-size: 2vh;
+    }
+
+    #tituloreseña{
+        text-align: left;
+        grid-column: 1 / 3;
+        
+    }
+
+    #barrareseña{
+        grid-column: 1 / 7;
+        justify-self: left;
+        width: 45vw;
+    }
+
+    .foto{
+        height: 3vw;
+        width: 3vw;
+    }
+
+    #tureseña{
+        grid-column: 1 / 7;
+        width: max-content;
+    }
+
+    #tuform{
+        max-height: 100%;
+        justify-self: center;
+    }
+
+    hr{
+        height: 0.2vh;
+    }
+
+    #tutexto{
+        font-size: 2vh;
+    }
+
+    #tunumero{
+        height: 4vh;
+        width: 10vw;
+        font-size: 1.2vh;
+    }
+
+    #enviar{
+        font-size: 1.5vh;
+    }
+
+}
+
+@media screen and (orientation: portrait) and (min-width: 500px){
+    #titulojuego{
+        font-size: 3.5vh;
+    }
+
+    .titulo{
+        font-size: 2.8vh;
+    }
+
+    #descripcionjuego{
+        font-size: 2.2vh;
+    }
+
+    .tag{
+        font-size: 1.6vh;
+    }
+
+    #comprabox{
+        column-gap: 4vh;
+    }
+
+    #precio{
+        font-size: 2.8vh;
+        justify-self: right;
+    }
+
+    #botoncompra{
+        justify-self: left;
+    }
+
+    #acercajuego{
+        font-size: 2.2vh;
+    }
+
+    .titulonombre{
+        font-size: 2.6vh;
+    }
+
+    .textoreseña{
+        font-size: 2.2vh;
+    }
+
+    .info{
+        margin: 2vh;
+    }
+
+    #tutexto{
+        font-size: 2.2vh;
+    }
+
+    #enviar{
+        font-size: 2.2vh;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

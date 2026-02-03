@@ -1,0 +1,324 @@
+#content{
+    display: grid;
+    grid-template-rows: min-content 1fr;
+}
+
+#errorbox{
+    display: grid;
+    position: absolute;
+    justify-self: center;
+    align-self: self-end;
+    width: 100%;
+}
+
+.error{
+    display: none;
+    height: min-content;
+    margin: 0;
+    text-align: center;
+    font-size: 1.3vh;
+    border: 0.3vh solid white;
+    color: white;
+    background-color: red;
+}
+
+#errorpass{
+    font-size: 1vh;
+}
+
+#msjsesion{
+    grid-row: 1 / 3;
+    place-self: center;
+    text-align: center;
+    height: min-content;
+    border: 1vh solid yellow;
+    border-radius: 1vh;
+    color: yellow;
+}
+
+#msjpago{
+    grid-row: 1 / 3;
+    place-self: center;
+    text-align: center;
+    height: min-content;
+    border: 1vh solid white;
+    border-radius: 1vh;
+    color: white;
+    background-color: blue;
+}
+
+#opcionbox{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 0.3vh solid white;
+}
+
+.opcion{
+    font-size: 2vh;
+    border: 0.3vh solid white;
+    color: white;
+    background-color: black;
+    border-bottom: none;
+}
+
+.opcion:hover{
+    cursor: pointer;
+}
+
+.opcionmarcada{
+    border: 0.3vh solid black;
+    color: black;
+    background-color: white;
+}
+
+#inicialbox{
+    display: grid;
+}
+
+#inicialtitulo{
+    font-size: 5vh;
+    align-self: center;
+    text-align: center;
+    color: white;
+}
+
+#pickup{
+    display: none;
+    grid-template-rows: repeat(7, min-content) 1fr;
+    place-self: center;
+    margin: 3vh;
+    border-radius: 3vh;
+    background-color: white;
+}
+
+#pickuptitulo{
+    justify-self: center;
+    width: min-content;
+    text-align: center;
+    font-size: 3vh;
+    margin: 1vh;
+}
+
+.datoadicional{
+    justify-self: center;
+    width: max-content;
+    text-align: center;
+    font-size: 1.1vh;
+    margin: 1vh;
+}
+
+.datotitulo{
+    justify-self: center;
+    width: max-content;
+    text-align: center;
+    font-size: 2vh;
+    margin: 2vh;
+}
+
+#titulofoto{
+    grid-row: 3;
+}
+
+#adiformato{
+    grid-row: 5;
+}
+
+#archivo{
+    justify-self: center;
+    font-size: 1.4vh;
+    border-width: 0.3vh;
+}
+
+#archivo::file-selector-button{
+    justify-self: center;
+    height: min-content;
+    padding: 0;
+    font-size: 1.5vh;
+    border: 0.3vh solid gray;
+    border-radius: 0.3vh;
+}
+
+.datoinput{
+    justify-self: center;
+    width: 70%;
+    font-size: 1.4vh;
+    border: 0.3vh solid black;  
+}
+
+.datoinput:focus{
+    outline: none;
+}
+
+.confirmar{
+    place-self: center;
+    margin: 2vh;
+    font-size: 2vh;
+    border: 0.3vh solid white;
+    border-radius: 1vh;
+    color: white;
+    background-color: orange;
+}
+
+.confirmar:active{
+    border-color: orange;
+    color: orange;
+    background-color: white;
+}
+
+.confirmar:hover{
+    border-color: orange;
+    color: orange;
+    background-color: white;
+    cursor: pointer;
+}
+
+#delivery{
+    display: none;
+    grid-template-rows: repeat(15, min-content) 1fr;
+    place-self: center;
+    height: min-content;
+    border-radius: 3vh;
+    background-color: white;
+}
+
+#deliverytitulo{
+    justify-self: center;
+    width: min-content;
+    text-align: center;
+    font-size: 3vh;
+    margin: 2vh;
+}
+
+#tituloloc{
+    grid-row: 6;
+}
+
+#datoloc{
+    grid-row: 7;
+}
+
+#titulodom{
+    grid-row: 8;
+}
+
+#datodom{
+    grid-row: 9;
+}
+
+#titulodep{
+    grid-row: 10;
+}
+
+#dilema{
+    display: grid;
+    grid-row: 11;
+    grid-template-columns: repeat(4, 1fr);
+    justify-self: center;
+}
+
+.dilemaboton{
+    font-size: 2vh;
+    align-self: self-end;
+}
+
+#si,#no{
+    height: 2vh;
+    width: 2vh;
+    margin-right: 1vh;
+}
+
+#titulopiso{
+    display: none;
+    grid-row: 12;
+}
+
+#datopiso{
+    display: none;
+    grid-row: 13;
+    font-size: 1.1vh;
+}
+
+@media screen and (orientation: landscape){
+    .error{
+        font-size: 2.2vh;
+    }
+
+    .opcion{
+        font-size: 3vh;
+    }
+
+    #deliverytitulo{
+        font-size: 3.4vh;
+        margin: 1vh;
+    }
+
+    .datoadicional{
+        font-size: 2vh;
+        margin: 0.6vh;
+    }
+
+    .datotitulo{
+        font-size: 2.5vh;
+        margin: 0.6vh;
+    }
+
+    .datoinput{
+        font-size: 2vh;
+        margin: 0.6vh;
+    }
+
+    #archivo{
+        font-size: 2vh;
+    }
+
+    #datopiso{
+        font-size: 1.8vh;
+    }
+
+    .confirmar{
+        font-size: 2.5vh;
+    }
+}
+
+@media screen and (orientation: portrait) and (min-width: 500px){
+    .error{
+        font-size: 1.6vh;
+    }
+
+    #deliverytitulo{
+        width: 75%;
+        margin: 2vh;
+        font-size: 3.2vh;
+    }
+
+    .datoadicional{
+        font-size: 1.5vh;
+        margin: 1vh;
+    }
+
+    .datotitulo{
+        font-size: 2.5vh;
+        margin: 1vh;
+    }
+
+    #archivo{
+        font-size: 2vh;
+    }
+
+    .datoinput{
+        font-size: 2vh;
+        margin: 1vh;
+    }
+
+    .dilemaboton{
+        font-size: 2vh;
+    }
+
+    #datopiso{
+        font-size: 1.5vh
+    }
+
+    .confirmar{
+        font-size: 2vh;
+    }
+}

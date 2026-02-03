@@ -1,0 +1,827 @@
+#content{
+    display: grid;
+    grid-template-rows: 12.5vw;
+    background-color: black;
+}
+
+#errorbox{
+    display: grid;
+    position: fixed;
+    top: 50vh;
+    bottom: 0vh;
+    left: 25vw;
+    right: 0vw;
+    height:min-content;
+    width: min-content;
+    align-content: center;
+}
+
+#errorgeneral{
+    display: none;
+    place-self: center;
+    width: 50vw;
+    align-content: center;
+    font-size: 2.1vh;
+    margin: 0;
+    text-align: center;
+    border: 0.3vh solid white;
+    border-radius: 1vh;
+    color: white;
+    background-color: red;
+}
+
+#titulojuego{
+    grid-column: 1 / 3;
+    align-content: center;
+    margin: 0;
+    text-align: center;
+    font-size: 3vh;
+    color: white;
+    background-color: black;
+}
+
+#imagenjuego{
+    grid-column: 1 / 3;
+    max-width: 45vh;
+    max-height: 45vh;
+    aspect-ratio: 16 / 9;
+    justify-self: center;
+    width: 90%
+}
+
+.titulo{
+    align-content: center;
+    margin: 2vh 0 0 0;
+    text-align: center;
+    font-size: 2.6vh;
+    color: white;
+    background-color: black;
+}
+
+.barra{
+    justify-self: center;
+    height: 0.5vh;
+    width: 100%;
+    padding: 0;
+    margin: 2vh 0 2vh 0;
+    border: none;
+    background-color: white;
+}
+
+#tagbox{
+    display: grid;
+    grid-column: 1 / 3;
+    grid-template-columns: repeat(6, 1fr);
+    justify-self: center;
+    width: 90%;
+    background-color: black;
+}
+
+#titulotag{
+    grid-column: 1 / 7;
+    margin: 2vh 0 0 0;
+    text-align: center;
+}
+
+#barratag{
+    grid-column: 1 / 7;
+}
+
+.taglink{
+    display: grid;
+}
+
+.tag{
+    margin: 0 0.5vh 0 0.5vh;
+    width: 90%;
+    padding: 0;
+    font-size: 1.4vh;
+    border: solid 0.3vh white;
+    border-radius: 1.2vh;
+    color: white;
+    background-color: blue;
+}
+
+.tag:active{
+    border-color: blue;
+    color:blue;
+    background-color: white;
+}
+
+.tag:hover{
+    cursor: pointer;
+    border-color: blue;
+    color:blue;
+    background-color: white;
+}
+
+#comprabox{
+    display: grid;
+    align-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column: 1 / 3;
+    justify-self: center;
+    width: 90%;
+    background-color: black;
+}
+
+#titulocompra{
+    grid-column: 1 / 6;
+    justify-self: center;
+}
+
+#barracompra{
+    grid-column: 1 / 6;
+    margin-bottom: 2vh;
+}
+
+#precio{
+    grid-row: 3;
+    align-content: center;
+    margin: 0;
+    text-align: center;
+    font-size: 2vh;
+    color: white;
+    background-color: black;
+}
+
+#etiquetaunidad{
+    grid-row: 3;
+    align-self: center;
+    text-align: center;
+    margin: 0;
+    font-size: 2vh;
+    color:white;
+}
+
+#unidadbox{
+    grid-row: 3;
+    height: min-content;
+}
+
+#unidadinput{
+    -webkit-appearance: none;
+    appearance: none;
+    height: 2vh;
+    width: 100%;
+    margin: 0;
+    background-color: transparent;
+}
+
+#unidadinput::-webkit-slider-runnable-track{
+    height: 2vh;
+    border-radius: 1vh;
+    background-color: white;
+
+}
+
+#unidadinput::-webkit-slider-thumb {
+    -webkit-appearence: none;
+    appearance: none;
+    height: 2vh;
+    width: 2vh;
+    border-radius: 50%;
+    margin-top: calc( (2vh / 2) - (2vh / 2) );
+    background-color: green;
+}
+
+
+#unidadinput:hover{
+    cursor: pointer;
+}
+
+#unidadinput:focus{
+    outline: none;
+}
+
+#unidadvalor{
+    justify-self: center;
+    text-align: center;
+    width: min-content;
+    margin: 0;
+    font-size: 2vh;
+    color: white;
+}
+
+#comprainput{
+    display: none;
+}
+
+#etiquetacompra{
+    background-color: yellow;
+    height: min-content;
+}
+
+#botoncompra{
+    grid-row: 3;
+    align-self: center;
+    height: 3vh;
+    margin: 0;
+    justify-self: center;
+    font-size: 0.8vh;
+    letter-spacing: 0.021vh;
+    border: 0.3vh solid white;
+    border-radius: 1.2vh;
+    color: white;
+    background-color: rgb(3, 174, 3);
+}
+
+#botoncompra:active{
+    border-color: rgb(3, 174, 3);
+    color:rgb(3, 174, 3);
+    background-color: white;
+}
+
+#botoncompra:hover{
+    cursor: pointer;
+    border-color: rgb(3, 174, 3);
+    color:rgb(3, 174, 3);
+    background-color: white;
+}
+
+#stocktexto{
+    grid-column: 1 / 3;
+    align-self: center;
+    text-align: center;
+    margin: 2vh 0 0 0;
+    font-size: 2.3vh;
+    color: white;
+}
+
+.msjcompra{
+    grid-column: 1 / 5;
+    justify-self: center;
+    text-align: center;
+    margin: 2vh 0 0 0;
+    padding: 0 2vh 0 2vh;
+    font-size: 2.3vh;
+    border-radius: 1vh;
+}
+
+#msjcomprado{
+    border: 0.3vh solid green;
+    color: green;
+}
+
+#msjagotado{
+    border: 0.3vh solid red;
+    color: red;
+}
+
+#msjdebido{
+    border: 0.3vh solid blue;
+    color: blue;
+}
+
+#msjsesion{
+    border: 0.3vh solid yellow;
+    color: yellow;
+}
+
+.msjreseña{
+    grid-column: 1 / 3;
+}
+
+#barraacerca1{
+    grid-column: 1 / 3;
+    grid-row: 6;
+    width: 90%;
+}
+
+#tituloacerca{
+    grid-column: 1 / 3;
+    grid-row: 7;
+    margin: 0;
+}
+
+#acercajuego{
+    grid-column: 1 / 3;
+    grid-row: 8;
+    margin: 2vh 0 0 0;
+    justify-self: center;
+    width: 90%;
+    text-align: justify;
+    font-size: 1.6vh;
+    color: white;
+    background-color: black;
+}
+
+#barraacerca2{
+    grid-column: 1 / 3;
+    grid-row: 9;
+    width: 90%;
+}
+
+#reseñabox{
+    display: grid;
+    grid-column: 1 / 3;
+    grid-template-columns: 1fr;
+    justify-content: space-evenly;
+    column-gap: 2vh;
+    justify-self: center;
+    width: 90%;
+    margin-bottom: 2vh;
+    background-color: black;
+}
+
+#tituloreseña{
+    grid-column: 1 / 3;
+    margin: 0;
+}
+
+#barrareseña{
+    grid-column: 1 / 3;
+    grid-row: 2;
+
+}
+
+.reseña{
+    display: grid;
+    place-content: space-evenly;
+    margin: 1vh 0 1vh 0;
+    height: 8vh;
+    width: 44vw;  
+    grid-template-columns: 1fr 1fr;
+    background-color: rgb(50, 50, 50);
+}
+
+.foto{
+    height: 3vh;
+    width: 3vh;
+    place-self: center;
+}
+
+.titulonombre{
+    margin: 0;
+    text-align: center;
+    place-self: center;
+    font-size: 1.7vh;
+    color: white;
+    background-color: rgb(50, 50, 50);
+}
+
+#eliminarbox{
+    display: grid;
+    place-content: center;
+}
+
+.textoreseña{
+    margin: 0;
+    text-align: center;
+    justify-self: center;
+    align-self: center;
+    height: min-content;
+    font-size: 2vh;
+    color: white;
+    background-color: rgb(50, 50, 50);
+}
+
+#eliminarreseña{
+    display: grid;
+    align-content: center;
+    place-self: center;
+    height: 3vh;
+    width: 3vh;
+    padding: 0;
+    font-size: 2vh;
+    border-width: 0.3vh;
+    border-radius: 0.7vh;
+    border-color: white;
+    color: white;
+    background-color: red;
+}
+
+#eliminarreseña:active{
+    border-color: red;
+    color: red;
+    background-color: white;
+}
+
+#eliminarreseña:hover{
+    cursor: pointer;
+    border-color: red;
+    color: red;
+    background-color: white;
+}
+
+#xreseña{
+    display: none;
+}
+
+#tureseña{
+    display: grid;
+    grid-template-columns: 1fr;
+    height: 8vh;
+}
+
+#tuform{    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-self: center;
+}
+
+#calificacion{
+    display: grid;
+}
+
+#tunumero{
+    -webkit-appearance: none;
+    appearance: none;
+    justify-self: center;
+    height: 2vh;
+    width: 90%;
+    background-color: transparent;
+}
+
+#tunumero::-webkit-slider-runnable-track{
+    height: 2vh;
+    border-radius: 1vh;
+    background-color: white;
+
+}
+
+#tunumero::-webkit-slider-thumb {
+    -webkit-appearence: none;
+    appearance: none;
+    height: 2vh;
+    width: 2vh;
+    border-radius: 50%;
+    margin-top: calc( (2vh / 2) - (2vh / 2) );
+    background-color: blue;
+}
+
+
+#tunumero:hover{
+    cursor: pointer;
+}
+
+#tunumero:focus{
+    outline: none;
+}
+
+#tunumero:hover{
+    cursor: pointer;
+}
+
+#tunumero:focus{
+    outline: none;
+}
+
+#textopuntuacion{
+    justify-self: center;
+    width: 90%;
+    margin: 0;
+    text-align: center;
+    font-size: 1.7vh;
+    color: white;
+}
+
+#enviar{
+    align-self: center;
+    height: 3.5vh;
+    font-size: 1vh;
+    border: 0.3vh solid white;
+    color: white;
+    border-radius: 1vh;
+    background-color: blue;
+}
+
+#enviar:active{
+    color:blue;
+    border-color: blue;
+    background-color: white;
+}
+
+#enviar:hover{
+    cursor: pointer;
+    color:blue;
+    border-color: blue;
+    background-color: white;
+}
+
+#mireseña{
+    height: 8vh;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#msjreseñado{
+    border: 0.3vh solid orange;
+    color: orange;
+    margin: 2vh 0 1vh 0;
+}
+
+#msjsesionreseña{
+    border: 0.3vh solid yellow;
+    color: yellow;
+}
+
+@media screen and (orientation: landscape){
+    #content{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 4.25vw;
+    }
+
+    #errorgeneral{
+        position: absolute;
+        font-size: 4vh;
+        width: 30vw;
+        left: 10vw; 
+    }
+
+    #titulojuego{
+        grid-column: 1 / 3;
+        justify-self: center;
+        font-size: 4vh;
+    }
+
+    #imagenjuego{
+        grid-column: 1;
+        grid-row: 2 / 4;
+        width: stretch;
+        max-height: 45vw;
+        max-width: 45vw;
+    }
+
+    #tagbox{
+        grid-column: 2;
+        grid-template-rows: repeat(3, min-content);
+        align-self: center;
+    }
+
+    .titulo{
+        margin: 0;
+        font-size: 3vh;
+    }
+
+    #titulotag{
+        margin: 0;
+    }
+
+    .barra{
+        width: 95%;
+        margin: 3vh 0 3vh 0;
+    }
+
+    #barratag{
+        width: 100%;
+    }
+
+    .tag{
+        font-size: 2vh;
+    }
+
+    #comprabox{
+        grid-column: 2;
+        grid-template-columns: repeat(4, 1fr);
+        margin: 0;
+        align-self: self-start;
+    }
+
+    #titulocompra{
+        text-align: center;
+        margin: 0;
+    }
+
+    #barracompra{
+        width: 100%;
+    }
+
+    #precio{
+        align-self: center;
+        margin: 0;
+        font-size: 3vh;
+    }
+
+    #unidadbox{
+        margin-top: 0;
+    }
+
+    #etiquetaunidad{
+        margin-top: 0;
+        font-size: 2.7vh;
+    }
+
+    #unidadvalor{
+        font-size: 2.5vh;
+    }
+
+    #botoncompra{
+        justify-self: center;
+        align-self: center;
+        width: max-content;
+        margin: 0;
+        font-size: 2.3vh;
+    }
+
+    .msjcompra{
+        font-size: 3vh;
+        align-self: center !important;
+    }
+
+    #stocktexto{
+        font-size: 3vh;
+    }
+
+    #barraacerca1{
+        width: 95%;
+        grid-row: 5;
+    }
+
+    #tituloacerca{
+        grid-row: 6;
+        justify-self: center;
+    }
+
+    #acercajuego{
+        grid-column: 1 / 3;
+        grid-row: 7;
+        justify-self: center;
+        width: 90%;
+        margin: 3vh 0 0 3vh;
+        font-size: 2vh;
+    }
+
+    #barraacerca2{
+        width: 95%;
+        grid-row: 8;
+    }
+
+    #reseñabox{
+        grid-column: 1 / 3;
+        grid-row: 9;
+        grid-template-columns: repeat(3, 1fr);
+        justify-self: center;
+        width: 95%;
+        margin: 3vh 0 3vh 0;
+    }
+
+    #tituloreseña{
+        grid-column: 1 / 4;
+        text-align: center;
+    }
+
+    #barrareseña{
+        grid-column: 1 / 4;
+        justify-self: center;
+        width: 100%;
+    }
+
+    .reseña{
+        grid-template-columns: 1fr 1fr;
+        align-content: center;
+        justify-content: space-evenly !important;
+        margin-top: 2vh;
+        height: 7vh;
+        width: 31vw;
+    }
+
+    .textoreseña{
+        font-size: 2vh;
+        justify-self: center;
+    }
+
+    .titulonombre{
+        font-size: 2.5vh;
+    }
+
+    #tuform{
+        max-height: 100%;
+    }
+
+    hr{
+        height: 0.2vh;
+    }
+
+    #tunombre{
+        align-self: center;
+        font-size: 2.5vh;
+    }
+
+    #calificacion{
+        height: min-content;
+    }
+
+    #tutexto{
+        font-size: 2vh;
+    }
+
+    #tunumero{
+        width: 10vw;
+        font-size: 1.2vh;
+    }
+
+    #textopuntuacion{
+        font-size: 2vh;
+    }
+
+    #enviar{
+        justify-self: center;
+        width: max-content;
+        font-size: 2vh;
+    }
+
+    .msjreseña{
+        grid-column: 1 / 4;
+        font-size: 3vh;
+    }
+
+}
+
+@media screen and (orientation: portrait) and (min-width: 500px){
+    /*
+    #content{
+        background-color: red;
+    }
+    */
+    #titulojuego{
+        font-size: 3.7vh;
+    }
+
+    .titulo{
+        font-size: 2.8vh;
+    }
+
+    #descripcionjuego{
+        font-size: 2.2vh;
+    }
+
+    .tag{
+        font-size: 1.8vh;
+    }
+
+    #comprabox{
+        column-gap: 4vh;
+    }
+
+    #precio{
+        font-size: 2.8vh;
+        justify-self: right;
+    }
+
+    #etiquetaunidad{
+        font-size: 2.5vh;
+    }
+
+    #unidadinput{
+        height: 2vh;
+    }
+
+    #unidadvalor{
+        font-size: 2vh;
+    }
+
+    #botoncompra{
+        font-size: 1.2vh;
+    }
+
+    #acercajuego{
+        font-size: 2.2vh;
+    }
+
+    .titulonombre{
+        font-size: 2.6vh;
+    }
+
+    .textoreseña{
+        font-size: 2.2vh;
+    }
+
+    .info{
+        margin: 2vh;
+    }
+
+    #tutexto{
+        font-size: 2.2vh;
+    }
+
+    #tunumero{
+        height: min-content;
+    }
+
+    #textopuntuacion{
+        font-size: 2vh;
+        align-self: self-start;
+    }
+
+    #enviar{
+        font-size: 1.8vh !important;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

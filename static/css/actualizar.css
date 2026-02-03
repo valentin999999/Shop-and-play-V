@@ -1,0 +1,159 @@
+#errorbox{
+    display: grid;
+    position: absolute;
+    justify-self: center;
+    align-self: self-end;
+    width: 100%;
+}
+
+.error{
+    display: none;
+    height: 2vh;
+    margin: 0;
+    text-align: center;
+    font-size: 1.3vh;
+    border: 0.3vh solid white;
+    color: white;
+    background-color: red;
+}
+
+#errorpass{
+    height: min-content;
+    font-size: 1vh;
+}
+
+#msjexito{
+    place-self: center;
+    text-align: center;
+    height: min-content;
+    border: 1vh solid white;
+    border-radius: 1vh;
+    color: white;
+    background-color: green;
+}
+
+#msjsesion{
+    place-self: center;
+    text-align: center;
+    height: min-content;
+    border: 1vh solid yellow;
+    border-radius: 1vh;
+    color: yellow;
+}
+
+#actualizarbox{
+    display: grid;
+    grid-template-rows: repeat(10, min-content);
+    place-self: center;
+    height: min-content;
+    width: 90%;
+    border-radius: 1vh;
+    background-color: white;
+}
+
+#actualizartitulo{
+    align-self: center;
+    text-align: center;
+    font-size: 3vh;
+    margin: 2vh 0 0 0;
+}
+
+.datotitulo{
+    text-align: center;
+    font-size: 2.5vh;
+}
+
+.datoinput{
+    justify-self: center;
+    width: 65%;
+    border: 0.3vh solid black;
+    font-size: 1.5vh;
+}
+
+#userinput{
+    grid-row: 3;
+}
+
+#mailinput{
+    grid-row: 5;
+}
+
+#passinput{
+    grid-row: 7;
+}
+
+#crear{
+    place-self: center;
+    margin: 2vh 0 1vh 0;
+    font-size: 2.4vh;
+    border: 0.3vh solid white;
+    border-radius: 1vh;
+    color: white;
+    background-color: red;
+}
+
+#crear:active{
+    border-color: red;
+    color: red;
+    background-color: white;
+}
+
+#crear:focus{
+    outline: none;
+}
+
+#crear:hover{
+    cursor: pointer;
+}
+
+@media screen and (orientation: landscape){
+    .error{
+        height: 3vh;
+        font-size: 2.3vh !important;
+    }
+
+    #actualizarbox{
+        width: 35%;
+    }
+
+    .datotitulo{
+        font-size: 2.5vh;
+    }
+
+    .datoinput{
+        font-size: 2.2vh;
+    }
+
+}
+
+@media screen and (orientation: portrait) and (min-width: 500px){
+    .error{
+        height:3vh;
+        font-size: 1.7vh;
+    }
+
+    #errorpass{
+        font-size: 1.3vh;
+    }
+
+    #actualizarbox{
+        width: 60%;
+    }
+
+    #actualizartitulo{
+        font-size: 3.5vh;
+    }
+
+    .datotitulo{
+        font-size: 2.6vh;
+    }
+
+    .datoinput{
+        font-size: 2vh;
+        width: 75%;
+    }
+
+    #crear{
+        font-size: 3vh;
+    }
+}
